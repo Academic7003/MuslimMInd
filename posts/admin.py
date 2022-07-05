@@ -1,3 +1,7 @@
 from django.contrib import admin
+from posts.models import *
+from creators.models import *
 
-# Register your models here.
+admin.site.register(PostModel)
+admin.site.register(Creator)
+

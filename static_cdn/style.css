@@ -278,7 +278,7 @@ a:hover {
 	height: 25px;
 	padding: 2px 0px 0px 0px;
 	margin-right: 10px;
-	background: url(images/img08.jpg) no-repeat left top;
+	/* background: url(images/img08.jpg) no-repeat left top; */
 	text-align: center;
 }
 

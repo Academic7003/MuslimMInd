@@ -1,5 +1,14 @@
+
+from uuid import uuid4
 from django.db import models
 from creators.models import Creator
+
+def upload_location(instance, filename):
+    ext = filename.split('.')[-1]
+    file_path = 'mind_archive/{filename}'.format(
+        filename='{}.{}'.format(uuid4().hex, ext)
+    )
+    return file_path
 
 
 
@@ -8,5 +17,17 @@ class PostModel(models.Model):
     created_data = models.DateTimeField(auto_now_add=True)
     creators = models.ManyToManyField(Creator)
     body = models.TextField()
-    file = models.FileField()
+    image = models.ImageField(upload_to=upload_location, null=True, blank=True)
+    file = models.FileField(upload_to=upload_location, null=True, blank=True)
+    sees = models.PositiveSmallIntegerField(default=0)
 
+    @property
+    def imageURL(self):
+        try:
+            url = str(self.image.url)
+        except:
+            url = ''
+        return url
+
+    def __str__(self):
+        return str(self.title)
