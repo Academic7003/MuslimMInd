@@ -29,5 +29,13 @@ class PostModel(models.Model):
             url = ''
         return url
 
+    @property
+    def fileURL(self):
+        try:
+            url = str(self.file.url)
+        except:
+            url = ''
+        return url
+
     def __str__(self):
         return str(self.title)

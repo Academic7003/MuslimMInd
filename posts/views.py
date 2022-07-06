@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_list_or_404
 from django.views.generic import TemplateView
 from posts.models import *
 
@@ -13,3 +13,9 @@ def view_posts(request):
     posts = PostModel.objects.all()
     context['posts'] = posts
     return render(request, 'main.html', context)
+
+def detail_post(request, pk):
+    context = {}
+    post = get_list_or_404(PostModel, pk=pk)
+    context['post'] = post
+    return render(request, 'detail.html', context)

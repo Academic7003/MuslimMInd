@@ -6,7 +6,7 @@
 			{% for post in posts %}
 
 			<div class="post">
-				<h2 class="title"><a href="#">{{post.title}}</a></h2>
+				<h2 class="title"><a href=" {% url 'posts:detail' post.id %} ">{{post.title}}</a></h2>
 				<p class="meta"><span class="date">{{post.created_data}}</p><p class="meta"></span>{%for name in post.creators.all%}<span class="date">Muallif: <a href="#">{{name.name}}</a></span></p>{% endfor %}
 				<div style="clear: both;">&nbsp;</div>
 				<div class="entry">

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<div id="page">
+    <div id="content">
+        {% for post in post %}
+
+        <div class="post">
+            <h2 class="title"><a href=" {% url 'posts:detail' post.id %} ">{{post.title}}</a></h2>
+            <p class="meta"><span class="date">{{post.created_data}}</p><p class="meta"></span>{%for name in post.creators.all%}<span class="date">Muallif: <a href="#">{{name.name}}</a></span></p>{% endfor %}
+            <div style="clear: both;">&nbsp;</div>
+            <div class="entry">
+                <p>{{post.body}}</p>
+                
+                <a href="{{post.fileURL }}" download="{{post.title}}">Download</a>
+                <object data="{{post.fileURL }}" type="application/pdf" width="100%" height="100%">
+                    <p>Alternative text - include a link <a href="{{post.fileURL }}">to the PDF!</a></p>
+                  </object>
+            
+            </div>
+        </div>
+        {% endfor %}
+
+        <div style="clear: both;">&nbsp;</div>
+    </div>
+</div>
+
+
+
+
+{% endblock content %}
