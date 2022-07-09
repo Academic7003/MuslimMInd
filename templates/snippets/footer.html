@@ -82,4 +82,59 @@
 </div>
 <!-- end #footer -->
 </body>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+<script>
+    function downloadFile(file_url, id) {
+        axios({
+            method: "GET",
+            url: file_url,
+            responseType: 'blob',
+            onDownloadProgress: event => {
+                if (event.loaded === event.total) {
+                    // send a GET request to the backend telling that download is complete
+                    axios({
+                            method: "GET",
+                            url: "/post-downloaded/" + id, // send id of the post, user is downloading
+                        })
+                        .then(console.log("download incremented"))
+                        .catch(error => console.log(error))
+                }
+            }
+        }).then(response => {
+            // download the file
+            const aTag = document.createElement("a");
+            aTag.href = URL.createObjectURL(resp.data);
+            aTag.download = "filename." + resp.data.type.split("/")[1];
+            aTag.click();
+        })
+    }
+</script>
+<script>
+    function seedFile(file_url, id) {
+        axios({
+            method: "GET",
+            url: file_url,
+            responseType: 'blob',
+            onDownloadProgress: event => {
+                if (event.loaded === event.total) {
+                    // send a GET request to the backend telling that download is complete
+                    axios({
+                            method: "GET",
+                            url: "/post-seed/" + id, // send id of the post, user is downloading
+                        })
+                        .then(console.log("download incremented"))
+                        .catch(error => console.log(error))
+                }
+            }
+        }).then(response => {
+            // download the file
+            const aTag = document.createElement("a");
+            aTag.href = URL.createObjectURL(resp.data);
+            aTag.download = "filename." + resp.data.type.split("/")[1];
+            aTag.click();
+        })
+    }
+</script>
 </html>

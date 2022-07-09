@@ -20,6 +20,7 @@ class PostModel(models.Model):
     image = models.ImageField(upload_to=upload_location, null=True, blank=True)
     file = models.FileField(upload_to=upload_location, null=True, blank=True)
     sees = models.PositiveSmallIntegerField(default=0)
+    downloads = models.PositiveSmallIntegerField(default=0)
 
     @property
     def imageURL(self):
