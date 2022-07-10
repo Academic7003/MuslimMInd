@@ -15,7 +15,7 @@ def upload_location(instance, filename):
 class PostModel(models.Model):
     title = models.CharField(max_length=255)
     created_data = models.DateTimeField(auto_now_add=True)
-    creators = models.ManyToManyField(Creator)
+    creators = models.ForeignKey(Creator, on_delete=models.SET_NULL, null=True, blank=True)
     body = models.TextField()
     image = models.ImageField(upload_to=upload_location, null=True, blank=True)
     file = models.FileField(upload_to=upload_location, null=True, blank=True)

@@ -7,12 +7,12 @@
 
 			<div class="post">
 				<h2 class="title"><a href=" {% url 'posts:detail' post.id %}" onclick="seedFile('{{ post.fileURL }}', '{{ post.id }}')">{{post.title}}</a></h2>
-				<p class="meta"><span class="date">{{post.created_data}}</p><p class="meta"></span>{%for name in post.creators.all%}<span class="date">Muallif: <a href="#">{{name.name}}</a></span></p>{% endfor %}
+				<p class="meta"><span class="date">{{post.created_data}}</p><p class="meta"></span><span class="date">Muallif: <a href="#">{{post.creators}}</a></span></p>
 				<div style="clear: both;">&nbsp;</div>
 				<div class="entry">
 					<p>{{post.body}}</p>
 					
-					<p class="links"><a href="#" class="more">To'liq matn</a></p>
+					<p><a href=" {% url 'posts:detail' post.id %}" class="more">To'liq>>></a></p>
 				</div>
 			</div>
 			{% endfor %}
@@ -24,15 +24,33 @@
 			<ul>
 				<li>
 					<div id="search" >
-						<form method="get" action="#">
+						<form method="get" action=".">{% csrf_token %}
 							<div>
-								<input type="text" name="s" id="search-text" value="" />
-								<input type="submit" id="search-submit" value="GO" />
+								<input type="text" name="q" id="search-text" value="" />
+								<input type="submit" id="search-submit" value="🔍" />
 							</div>
 						</form>
 					</div>
 					<div style="clear: both;">&nbsp;</div>
+			{% if query %}
+				
 				</li>
+					<h2>Qidiruv narijalari:</h2>
+					<li>
+
+				{% if result %}
+				<ul class="searchResults list-style-disc">
+				{% for item in result %}
+				<li><a href= {% url 'posts:detail' item.id %}>{{ item.title }}</a></li>
+				{% endfor %}
+				</ul>
+				{% else %}
+				<p>O'zbekcha kitob topilmadi</p>
+				{% endif %}
+			{% endif %}
+		</li>
+
+		
 				<li>
 					<h2>Aliquam tempus</h2>
 					<p>Mauris vitae nisl nec metus placerat perdiet est. Phasellus dapibus semper consectetuer hendrerit.</p>
