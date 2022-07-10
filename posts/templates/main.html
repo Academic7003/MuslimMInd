@@ -7,7 +7,7 @@
 
 			<div class="post">
 				<h2 class="title"><a href=" {% url 'posts:detail' post.id %}" onclick="seedFile('{{ post.fileURL }}', '{{ post.id }}')">{{post.title}}</a></h2>
-				<p class="meta"><span class="date">{{post.created_data}}</p><p class="meta"></span><span class="date">Muallif: <a href="#">{{post.creators}}</a></span></p>
+				<p class="meta"><span class="date">{{post.created_data}}</p><p class="meta"></span><span class="date">Muallif: <a href="{% url 'posts:creatordetail' post.creators.id %}">{{post.creators}}</a></span></p>
 				<div style="clear: both;">&nbsp;</div>
 				<div class="entry">
 					<p>{{post.body}}</p>
