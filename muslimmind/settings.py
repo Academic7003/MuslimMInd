@@ -15,8 +15,8 @@ SECRET_KEY = 'django-insecure-y#5+@*!7%s5m!5h=-e9k1@a6h_yo%3&*1@4$55f8+c^h+%gaxo
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['*']
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # Application definition
 
@@ -30,10 +30,12 @@ INSTALLED_APPS = [
 
     'posts.apps.PostsConfig',
     'creators.apps.CreatorsConfig',
+    'whitenoise.runserver_nostatic',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -43,6 +45,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'muslimmind.urls'
+WHITENOISE_USE_FINDERS = True
 
 TEMPLATES = [
     {
@@ -68,8 +71,13 @@ WSGI_APPLICATION = 'muslimmind.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'd59cq8daq7th29',
+        'USER': 'phseidrwpytzil',
+        'PASSWORD':'5dd3abcd32837bfbede4d400d50f5d2555407fcb1bac103459c7353951afa91b',
+        'HOST':'ec2-3-219-229-143.compute-1.amazonaws.com',
+        'PORT':'5432'
+
     }
 }
 
