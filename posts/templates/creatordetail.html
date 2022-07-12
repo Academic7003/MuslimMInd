@@ -8,30 +8,16 @@
 
         <div class="post">
             <h2 class="title"><a href=" {% url 'posts:detail' post.id %}" onclick="seedFile('{{ post.fileURL }}', '{{ post.id }}')">{{post.title}}</a></h2>
-
-            {% comment %} <p class="meta"><span class="date">{{post.created_data}}</p><p class="meta"></span>{%for name in post.creators.all%}<span class="date">Muallif: <a href="#">{{name.name}}</a></span></p>{% endfor %}
-            <div style="clear: both;">&nbsp;</div>
-           <p class="meta"> <span class="date">👁{{post.sees}}</span></p>
-
-           <p class="meta"> <span class="date">📥{{post.downloads}}</span></p>
-            <div style="clear: both;">&nbsp;</div>
-            <div class="entry"> {% endcomment %}
-                {% comment %} <p>{{post.body}}</p> {% endcomment %}
-                
-                {% comment %} <object data="{{post.fileURL }}" type="application/pdf" width="100%" height="100%">
-                    <p><a href="{{post.fileURL }}">O'qish</a></p>
-                  </object>
-                  <button onclick="downloadFile('{{ post.fileURL }}', '{{ post.id }}')"><a href="{{post.fileURL }}" download="{{post.title}}">Yuklash</a></button>
-            </div> {% endcomment %}
         </div>
 
         <div style="clear: both;">&nbsp;</div>
+
+{% endfor %}
     </div>
 </div>
 
 
 
-{% endfor %}
 
 
 
