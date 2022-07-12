@@ -3,13 +3,27 @@ from posts.models import *
 from django.http import HttpResponse
 from django.db.models import Q 
 from creators.models import Creator
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 
 
 
 def view_posts(request):
     context = {}
-    posts = PostModel.objects.all()
-    context['posts'] = posts
+    posts_list = PostModel.objects.all()
+    page = request.GET.get('page', 1)
+    paginator = Paginator(posts_list, 3)
+
+    try:
+        posts = paginator.page(page)
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
+
+
+    context = {'posts': posts}
+    # pois
     query = request.GET.get('q','')
     #The empty string handles an empty "request"
     if query:
