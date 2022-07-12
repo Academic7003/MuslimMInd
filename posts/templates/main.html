@@ -35,7 +35,6 @@
 			{% if query %}
 				
 				</li>
-					<h2>topilmadi...</h2>
 					<li>
 
 				{% if result %}
@@ -45,36 +44,31 @@
 				{% endfor %}
 				</ul>
 				{% else %}
-				<p>O'zbekcha kitob topilmadi</p>
+				<h2>Qidiruv:</h2>
+				<p>topilmadi...</p>
+
 				{% endif %}
 			{% endif %}
-		</li>
+				</li>
 
 		
-				<li>
+				{% comment %} <li>
 					<h2>Aliquam tempus</h2>
 					<p>Mauris vitae nisl nec metus placerat perdiet est. Phasellus dapibus semper consectetuer hendrerit.</p>
-				</li>
+				</li> {% endcomment %}
 				<li>
-					<h2>Categories</h2>
-					<ul>
-						<li><a href="#">Aliquam libero</a></li>
-						<li><a href="#">Consectetuer adipiscing elit</a></li>
-						<li><a href="#">Metus aliquam pellentesque</a></li>
-						<li><a href="#">Suspendisse iaculis mauris</a></li>
-						<li><a href="#">Urnanet non molestie semper</a></li>
-						<li><a href="#">Proin gravida orci porttitor</a></li>
+					<h2>Top</h2>
+					<ul>{% for top in tops %}
+						<li><a href="{% url 'posts:detail' top.id %}" onclick="seedFile('{{ top.fileURL }}', '{{ top.id }}')">{{top.title}}</a></li>
+						{% endfor %}
 					</ul>
 				</li>
 				<li>
-					<h2>Blogroll</h2>
+					<h2>Bizning maqolalar</h2>
 					<ul>
-						<li><a href="#">Aliquam libero</a></li>
-						<li><a href="#">Consectetuer adipiscing elit</a></li>
-						<li><a href="#">Metus aliquam pellentesque</a></li>
-						<li><a href="#">Suspendisse iaculis mauris</a></li>
-						<li><a href="#">Urnanet non molestie semper</a></li>
-						<li><a href="#">Proin gravida orci porttitor</a></li>
+						{% for rpost in r_posts %}
+						<li><a href="{% url 'posts:detail' rpost.id %}" onclick="seedFile('{{ rpost.fileURL }}', '{{ rpost.id }}')">{{rpost.title}}</a></li>
+						{% endfor %}
 					</ul>
 				</li>
 				<li>

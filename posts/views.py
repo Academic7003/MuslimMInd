@@ -24,6 +24,20 @@ def view_posts(request):
        result = []
     context['result'] = result
     context['query']=query
+    # random post
+    r_posts = PostModel.objects.order_by('?')
+    try:
+        r_posts = r_posts[:6]
+    except:
+        r_posts = r_posts
+    context['r_posts'] = r_posts
+    # is top
+    tops = PostModel.objects.filter(is_top =True)
+    try:
+        tops = tops[:6]
+    except:
+        tops = tops
+    context['tops'] = tops
     return render(request, 'main.html', context)
 
 def detail_post(request, pk):
@@ -55,3 +69,5 @@ def sort_by_creator(request, pk):
     context['posts'] = posts
     context['creator'] = creator
     return render(request, 'creatordetail.html', context)
+
+    

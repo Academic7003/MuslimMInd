@@ -21,6 +21,7 @@ class PostModel(models.Model):
     file = models.FileField(upload_to=upload_location, null=True, blank=True)
     sees = models.PositiveSmallIntegerField(default=0)
     downloads = models.PositiveSmallIntegerField(default=0)
+    is_top = models.BooleanField(null=True, blank=True)
 
     @property
     def imageURL(self):
