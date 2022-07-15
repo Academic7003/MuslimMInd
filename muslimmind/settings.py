@@ -1,5 +1,4 @@
 import os
-
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -12,10 +11,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-y#5+@*!7%s5m!5h=-e9k1@a6h_yo%3&*1@4$55f8+c^h+%gaxo'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = os.getenv("DEBUG", "False") == "True"
+
+ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost").split(",")
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # Application definition
@@ -62,6 +62,7 @@ TEMPLATES = [
         },
     },
 ]
+# DEVELOPMENT_MODE = os.getenv("DEVELOPMENT_MODE", "False") == "True"
 
 WSGI_APPLICATION = 'muslimmind.wsgi.application'
 
@@ -74,13 +75,12 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'd59cq8daq7th29',
         'USER': 'phseidrwpytzil',
-        'PASSWORD':'5dd3abcd32837bfbede4d400d50f5d2555407fcb1bac103459c7353951afa91b',
-        'HOST':'ec2-34-225-159-178.compute-1.amazonaws.com',
-        'PORT':'5432'
+        'PASSWORD': '5dd3abcd32837bfbede4d400d50f5d2555407fcb1bac103459c7353951afa91b',
+        'HOST': 'ec2-34-225-159-178.compute-1.amazonaws.com',
+        'PORT': '5432'
 
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
