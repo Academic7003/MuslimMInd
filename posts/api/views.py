@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from rest_framework.generics import ListAPIView
 from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
@@ -75,11 +76,10 @@ def is_top_view(request):
 
 
 def api_post_downloaded(request, pk):
-    context = {}
     file = PostModel.objects.get(pk=pk)
     file.downloads += 1
     file.save()
-    return Response(status=status.HTTP_201_CREATED)
+    return HttpResponse("chotki")
 
 
 
