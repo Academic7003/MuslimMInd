@@ -27,7 +27,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    'django_filters',
     'posts.apps.PostsConfig',
     'creators.apps.CreatorsConfig',
     'whitenoise.runserver_nostatic',
@@ -46,6 +46,10 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'muslimmind.urls'
 WHITENOISE_USE_FINDERS = True
+
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
+}
 
 TEMPLATES = [
     {
