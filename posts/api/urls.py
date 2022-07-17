@@ -2,7 +2,7 @@ from django.urls import path, include
 from posts.api.views import *
 
 urlpatterns = [
-    path('posts', ApiPostsListView.as_view({'get':'list'})),
+    path('', ApiPostsListView.as_view({'get':'list'})),
     path('posts/<int:pk>', ApiPostsListView.as_view({'get':'retrieve'})),
     path('search/', SearchListView.as_view()),
     
